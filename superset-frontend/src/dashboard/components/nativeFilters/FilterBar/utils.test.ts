@@ -26,7 +26,7 @@ import {
 
 describe('FilterBar Utils - Validation and Apply Logic', () => {
   describe('checkIsValidateError', () => {
-    test('should return true when no filters have validation errors', () => {
+    it('should return true when no filters have validation errors', () => {
       const dataMask: DataMaskStateWithId = {
         'filter-1': {
           id: 'filter-1',
@@ -49,7 +49,7 @@ describe('FilterBar Utils - Validation and Apply Logic', () => {
       expect(checkIsValidateError(dataMask)).toBe(true);
     });
 
-    test('should return false when any filter has validation error', () => {
+    it('should return false when any filter has validation error', () => {
       const dataMask: DataMaskStateWithId = {
         'filter-1': {
           id: 'filter-1',
@@ -72,12 +72,12 @@ describe('FilterBar Utils - Validation and Apply Logic', () => {
       expect(checkIsValidateError(dataMask)).toBe(false);
     });
 
-    test('should handle empty dataMask', () => {
+    it('should handle empty dataMask', () => {
       const dataMask: DataMaskStateWithId = {};
       expect(checkIsValidateError(dataMask)).toBe(true);
     });
 
-    test('should handle filters without filterState', () => {
+    it('should handle filters without filterState', () => {
       const dataMask: DataMaskStateWithId = {
         'filter-1': {
           id: 'filter-1',
@@ -90,7 +90,7 @@ describe('FilterBar Utils - Validation and Apply Logic', () => {
   });
 
   describe('checkIsMissingRequiredValue', () => {
-    test('should return true for required filter with undefined value', () => {
+    it('should return true for required filter with undefined value', () => {
       const filter = {
         id: 'test-filter',
         controlValues: {
@@ -105,7 +105,7 @@ describe('FilterBar Utils - Validation and Apply Logic', () => {
       expect(checkIsMissingRequiredValue(filter, filterState)).toBe(true);
     });
 
-    test('should return true for required filter with null value', () => {
+    it('should return true for required filter with null value', () => {
       const filter = {
         id: 'test-filter',
         controlValues: {
@@ -120,7 +120,7 @@ describe('FilterBar Utils - Validation and Apply Logic', () => {
       expect(checkIsMissingRequiredValue(filter, filterState)).toBe(true);
     });
 
-    test('should return false for required filter with valid value', () => {
+    it('should return false for required filter with valid value', () => {
       const filter = {
         id: 'test-filter',
         controlValues: {
@@ -135,7 +135,7 @@ describe('FilterBar Utils - Validation and Apply Logic', () => {
       expect(checkIsMissingRequiredValue(filter, filterState)).toBe(false);
     });
 
-    test('should return false for non-required filter with undefined value', () => {
+    it('should return false for non-required filter with undefined value', () => {
       const filter = {
         id: 'test-filter',
         controlValues: {
@@ -150,7 +150,7 @@ describe('FilterBar Utils - Validation and Apply Logic', () => {
       expect(checkIsMissingRequiredValue(filter, filterState)).toBe(false);
     });
 
-    test('should return false for filter without controlValues', () => {
+    it('should return false for filter without controlValues', () => {
       const filter = {
         id: 'test-filter',
       } as Filter;
@@ -166,7 +166,7 @@ describe('FilterBar Utils - Validation and Apply Logic', () => {
   });
 
   describe('checkIsApplyDisabled', () => {
-    test('should return true when filters have validation errors', () => {
+    it('should return true when filters have validation errors', () => {
       const dataMaskSelected: DataMaskStateWithId = {
         'filter-1': {
           id: 'filter-1',
@@ -204,7 +204,7 @@ describe('FilterBar Utils - Validation and Apply Logic', () => {
       ).toBe(true);
     });
 
-    test('should return false when selected and applied states differ', () => {
+    it('should return false when selected and applied states differ', () => {
       const dataMaskSelected: DataMaskStateWithId = {
         'filter-1': {
           id: 'filter-1',
@@ -244,7 +244,7 @@ describe('FilterBar Utils - Validation and Apply Logic', () => {
       ).toBe(false);
     });
 
-    test('should return true when selected and applied states are identical', () => {
+    it('should return true when selected and applied states are identical', () => {
       const dataMaskSelected: DataMaskStateWithId = {
         'filter-1': {
           id: 'filter-1',
@@ -284,7 +284,7 @@ describe('FilterBar Utils - Validation and Apply Logic', () => {
       ).toBe(true);
     });
 
-    test('should return true when required filter is missing value in selected state', () => {
+    it('should return true when required filter is missing value in selected state', () => {
       const dataMaskSelected: DataMaskStateWithId = {
         'filter-1': {
           id: 'filter-1',
@@ -322,7 +322,7 @@ describe('FilterBar Utils - Validation and Apply Logic', () => {
       ).toBe(true);
     });
 
-    test('should handle filter count mismatch', () => {
+    it('should handle filter count mismatch', () => {
       const dataMaskSelected: DataMaskStateWithId = {
         'filter-1': {
           id: 'filter-1',
@@ -369,7 +369,7 @@ describe('FilterBar Utils - Validation and Apply Logic', () => {
       ).toBe(true);
     });
 
-    test('should handle validation status recalculation scenario', () => {
+    it('should handle validation status recalculation scenario', () => {
       // Scenario: Filter was required and had error, then user selected value
       // The validateStatus should be cleared and Apply should be enabled
 

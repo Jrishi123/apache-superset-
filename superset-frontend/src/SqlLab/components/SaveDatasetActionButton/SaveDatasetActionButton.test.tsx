@@ -25,7 +25,7 @@ const overlayMenu = (
 );
 
 describe('SaveDatasetActionButton', () => {
-  test('renders a split save button', async () => {
+  it('renders a split save button', async () => {
     render(
       <SaveDatasetActionButton
         setShowSave={() => true}
@@ -43,7 +43,7 @@ describe('SaveDatasetActionButton', () => {
     expect(caretBtn).toBeVisible();
   });
 
-  test('renders a "save dataset" dropdown menu item when user clicks caret button', async () => {
+  it('renders a "save dataset" dropdown menu item when user clicks caret button', async () => {
     render(
       <SaveDatasetActionButton
         setShowSave={() => true}

@@ -30,15 +30,15 @@ const mockedProps = {
 };
 
 describe('QueryTable', () => {
-  test('is valid', () => {
+  it('is valid', () => {
     expect(isValidElement(<QueryTable displayLimit={100} />)).toBe(true);
   });
 
-  test('is valid with props', () => {
+  it('is valid with props', () => {
     expect(isValidElement(<QueryTable {...mockedProps} />)).toBe(true);
   });
 
-  test('renders a proper table', () => {
+  it('renders a proper table', () => {
     const mockStore = configureStore([thunk]);
     const { container } = render(<QueryTable {...mockedProps} />, {
       store: mockStore({ user }),
@@ -55,7 +55,7 @@ describe('QueryTable', () => {
     ).toHaveLength(2);
   });
 
-  test('renders empty table when no queries provided', () => {
+  it('renders empty table when no queries provided', () => {
     const mockStore = configureStore([thunk]);
     const { container } = render(
       <QueryTable {...{ ...mockedProps, queries: [] }} />,
@@ -73,7 +73,7 @@ describe('QueryTable', () => {
     ).toHaveLength(0);
   });
 
-  test('renders with custom displayLimit', () => {
+  it('renders with custom displayLimit', () => {
     const mockStore = configureStore([thunk]);
     const customProps = {
       ...mockedProps,

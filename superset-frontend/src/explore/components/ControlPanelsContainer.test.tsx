@@ -106,7 +106,7 @@ describe('ControlPanelsContainer', () => {
     } as ControlPanelsContainerProps;
   }
 
-  test('renders ControlPanelSections', async () => {
+  it('renders ControlPanelSections', async () => {
     render(<ControlPanelsContainer {...getDefaultProps()} />, {
       useRedux: true,
     });
@@ -120,7 +120,7 @@ describe('ControlPanelsContainer', () => {
     ).toHaveLength(5);
   });
 
-  test('renders ControlPanelSections no Customize Tab', async () => {
+  it('renders ControlPanelSections no Customize Tab', async () => {
     getChartControlPanelRegistry().registerValue('table', {
       controlPanelSections: [
         {
@@ -153,7 +153,7 @@ describe('ControlPanelsContainer', () => {
     ).toHaveLength(2);
   });
 
-  test('visibility of panels is correctly applied', async () => {
+  it('visibility of panels is correctly applied', async () => {
     getChartControlPanelRegistry().registerValue('table', {
       controlPanelSections: [
         {
@@ -203,7 +203,7 @@ describe('ControlPanelsContainer', () => {
     );
   });
 
-  test('hidden state of controls is correctly applied', async () => {
+  it('hidden state of controls is correctly applied', async () => {
     getChartControlPanelRegistry().registerValue('table', {
       controlPanelSections: [
         {

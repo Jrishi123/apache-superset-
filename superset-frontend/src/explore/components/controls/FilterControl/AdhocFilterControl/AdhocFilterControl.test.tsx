@@ -80,7 +80,7 @@ describe('AdhocFilterControl', () => {
     expect(screen.getByTestId('adhoc-filter-control')).toBeInTheDocument();
   });
 
-  test('should render existing filters', () => {
+  it('should render existing filters', () => {
     const existingFilter = new AdhocFilter({
       expressionType: ExpressionTypes.Simple,
       subject: 'column1',
@@ -93,7 +93,7 @@ describe('AdhocFilterControl', () => {
     expect(screen.getByText("column1 = 'test'")).toBeInTheDocument();
   });
 
-  test('should call onChange when removing a filter', async () => {
+  it('should call onChange when removing a filter', async () => {
     const existingFilter = new AdhocFilter({
       expressionType: ExpressionTypes.Simple,
       subject: 'column1',

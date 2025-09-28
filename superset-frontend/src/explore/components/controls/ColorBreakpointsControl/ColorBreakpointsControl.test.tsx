@@ -56,7 +56,7 @@ describe('ColorBreakpointsControl', () => {
     expect(screen.getByText('Click to add new breakpoint')).toBeInTheDocument();
   });
 
-  test('should render existing breakpoints', () => {
+  it('should render existing breakpoints', () => {
     const existingBreakpoint: ColorBreakpointType = {
       id: 0,
       color: { r: 255, g: 0, b: 0, a: 1 },
@@ -68,12 +68,12 @@ describe('ColorBreakpointsControl', () => {
     expect(screen.getByText('0 - 100')).toBeInTheDocument();
   });
 
-  test('should handle empty breakpoints array', () => {
+  it('should handle empty breakpoints array', () => {
     renderComponent({ value: [] });
     expect(screen.getByText('Click to add new breakpoint')).toBeInTheDocument();
   });
 
-  test('should handle multiple breakpoints', () => {
+  it('should handle multiple breakpoints', () => {
     const breakpoints: ColorBreakpointType[] = [
       {
         id: 0,
@@ -94,20 +94,20 @@ describe('ColorBreakpointsControl', () => {
     expect(screen.getByText('50 - 100')).toBeInTheDocument();
   });
 
-  test('should call onChange when component state updates', () => {
+  it('should call onChange when component state updates', () => {
     const onChange = jest.fn();
     renderComponent({ onChange });
 
     expect(onChange).toHaveBeenCalledWith([]);
   });
 
-  test('should show new breakpoint button when no breakpoints exist', () => {
+  it('should show new breakpoint button when no breakpoints exist', () => {
     renderComponent();
     const ghostButton = screen.getByText('Click to add new breakpoint');
     expect(ghostButton).toBeInTheDocument();
   });
 
-  test('should handle new breakpoint button click and popover visibility state', async () => {
+  it('should handle new breakpoint button click and popover visibility state', async () => {
     renderComponent();
 
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
@@ -118,7 +118,7 @@ describe('ColorBreakpointsControl', () => {
     expect(screen.getByRole('dialog')).toBeInTheDocument();
   });
 
-  test('should save new breakpoint and update state', async () => {
+  it('should save new breakpoint and update state', async () => {
     const onChange = jest.fn();
     renderComponent({ onChange });
 
@@ -154,7 +154,7 @@ describe('ColorBreakpointsControl', () => {
     });
   });
 
-  test('should remove breakpoint when delete is triggered', async () => {
+  it('should remove breakpoint when delete is triggered', async () => {
     const existingBreakpoint: ColorBreakpointType = {
       id: 0,
       color: { r: 255, g: 0, b: 0, a: 1 },
@@ -171,7 +171,7 @@ describe('ColorBreakpointsControl', () => {
     expect(onChange).toHaveBeenCalledWith([]);
   });
 
-  test('should edit existing breakpoint when clicked', async () => {
+  it('should edit existing breakpoint when clicked', async () => {
     const existingBreakpoint: ColorBreakpointType = {
       id: 0,
       color: { r: 255, g: 0, b: 0, a: 1 },
@@ -190,7 +190,7 @@ describe('ColorBreakpointsControl', () => {
     expect(screen.getByDisplayValue('100')).toBeInTheDocument();
   });
 
-  test('should handle DndSelectLabel props correctly', () => {
+  it('should handle DndSelectLabel props correctly', () => {
     renderComponent();
 
     const dndSelectLabel = screen
@@ -199,7 +199,7 @@ describe('ColorBreakpointsControl', () => {
     expect(dndSelectLabel).toBeInTheDocument();
   });
 
-  test('should assign incremental IDs to new breakpoints', async () => {
+  it('should assign incremental IDs to new breakpoints', async () => {
     const onChange = jest.fn();
     renderComponent({ onChange });
 

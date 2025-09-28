@@ -136,7 +136,7 @@ test('renders preview', async () => {
 });
 
 describe('table actions', () => {
-  test('refreshes table metadata when triggered', async () => {
+  it('refreshes table metadata when triggered', async () => {
     const { getByRole, getByText } = render(<TablePreview {...mockedProps} />, {
       useRedux: true,
       initialState,
@@ -152,7 +152,7 @@ describe('table actions', () => {
     );
   });
 
-  test('shows CREATE VIEW statement', async () => {
+  it('shows CREATE VIEW statement', async () => {
     const { getByRole, getByText } = render(<TablePreview {...mockedProps} />, {
       useRedux: true,
       initialState,

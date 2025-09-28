@@ -55,7 +55,7 @@ describe('ColorBreakpointPopoverControl', () => {
     jest.clearAllMocks();
   });
 
-  test('should render with default props', () => {
+  it('should render with default props', () => {
     renderComponent();
 
     expect(screen.getByText('Color for breakpoint')).toBeInTheDocument();
@@ -63,21 +63,21 @@ describe('ColorBreakpointPopoverControl', () => {
     expect(screen.getByText('Max value')).toBeInTheDocument();
   });
 
-  test('should render close and save buttons', () => {
+  it('should render close and save buttons', () => {
     renderComponent();
 
     expect(screen.getByTestId('close-button')).toBeInTheDocument();
     expect(screen.getByTestId('save-button')).toBeInTheDocument();
   });
 
-  test('should render with existing breakpoint values', () => {
+  it('should render with existing breakpoint values', () => {
     renderComponent();
 
     expect(screen.getByDisplayValue('0')).toBeInTheDocument();
     expect(screen.getByDisplayValue('100')).toBeInTheDocument();
   });
 
-  test('should call onClose when close button is clicked', async () => {
+  it('should call onClose when close button is clicked', async () => {
     const onClose = jest.fn();
     renderComponent({ onClose });
 
@@ -87,14 +87,14 @@ describe('ColorBreakpointPopoverControl', () => {
     expect(onClose).toHaveBeenCalled();
   });
 
-  test('should disable save button when form is incomplete', () => {
+  it('should disable save button when form is incomplete', () => {
     renderComponent({ value: undefined });
 
     const saveButton = screen.getByTestId('save-button');
     expect(saveButton).toBeDisabled();
   });
 
-  test('should enable save button when form is complete', async () => {
+  it('should enable save button when form is complete', async () => {
     renderComponent({ value: mockEmptyBreakpoint });
 
     const minInput = screen.getByTestId('min-value-input');
@@ -109,7 +109,7 @@ describe('ColorBreakpointPopoverControl', () => {
     });
   });
 
-  test('should call onSave with correct values when save button is clicked', async () => {
+  it('should call onSave with correct values when save button is clicked', async () => {
     const onSave = jest.fn();
     const onClose = jest.fn();
 
@@ -148,7 +148,7 @@ describe('ColorBreakpointPopoverControl', () => {
     expect(onClose).toHaveBeenCalled();
   });
 
-  test('should disable save button when min value >= max value', async () => {
+  it('should disable save button when min value >= max value', async () => {
     renderComponent({ value: undefined });
 
     const minInput = screen.getByTestId('min-value-input');
@@ -161,7 +161,7 @@ describe('ColorBreakpointPopoverControl', () => {
     expect(saveButton).toBeDisabled();
   });
 
-  test('should disable save button when breakpoint overlaps with existing ones', async () => {
+  it('should disable save button when breakpoint overlaps with existing ones', async () => {
     const existingBreakpoints: ColorBreakpointType[] = [
       {
         id: 0,
@@ -192,7 +192,7 @@ describe('ColorBreakpointPopoverControl', () => {
     expect(saveButton).toBeDisabled();
   });
 
-  test('should handle non-numeric input validation', async () => {
+  it('should handle non-numeric input validation', async () => {
     renderComponent({ value: undefined });
 
     const minInput = screen.getByTestId('min-value-input');
@@ -207,7 +207,7 @@ describe('ColorBreakpointPopoverControl', () => {
     });
   });
 
-  test('should update min value when input changes', async () => {
+  it('should update min value when input changes', async () => {
     renderComponent();
 
     const minInput = screen.getByDisplayValue('0');
@@ -217,7 +217,7 @@ describe('ColorBreakpointPopoverControl', () => {
     expect(screen.getByDisplayValue('20')).toBeInTheDocument();
   });
 
-  test('should update max value when input changes', async () => {
+  it('should update max value when input changes', async () => {
     renderComponent();
 
     const maxInput = screen.getByDisplayValue('100');
@@ -227,7 +227,7 @@ describe('ColorBreakpointPopoverControl', () => {
     expect(screen.getByDisplayValue('200')).toBeInTheDocument();
   });
 
-  test('should handle zero values correctly', async () => {
+  it('should handle zero values correctly', async () => {
     renderComponent({
       value: mockEmptyBreakpoint,
     });
@@ -244,7 +244,7 @@ describe('ColorBreakpointPopoverControl', () => {
     });
   });
 
-  test('should handle negative values correctly', async () => {
+  it('should handle negative values correctly', async () => {
     renderComponent({
       value: mockEmptyBreakpoint,
     });
@@ -261,7 +261,7 @@ describe('ColorBreakpointPopoverControl', () => {
     });
   });
 
-  test('should handle decimal values correctly', async () => {
+  it('should handle decimal values correctly', async () => {
     renderComponent({
       value: mockEmptyBreakpoint,
     });
@@ -278,7 +278,7 @@ describe('ColorBreakpointPopoverControl', () => {
     });
   });
 
-  test('should not show overlap error when editing existing breakpoint', async () => {
+  it('should not show overlap error when editing existing breakpoint', async () => {
     const existingBreakpoints: ColorBreakpointType[] = [
       {
         id: 0,

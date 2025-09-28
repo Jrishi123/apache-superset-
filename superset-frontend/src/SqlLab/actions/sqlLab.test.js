@@ -50,7 +50,7 @@ jest.mock('@superset-ui/core', () => ({
 }));
 
 describe('getUpToDateQuery', () => {
-  test('should return the up to date query editor state', () => {
+  it('should return the up to date query editor state', () => {
     const outOfUpdatedQueryEditor = {
       ...defaultQueryEditor,
       schema: null,
@@ -168,7 +168,7 @@ describe('async actions', () => {
     const expectedSql = 'SELECT 1';
     fetchMock.post(formatQueryEndpoint, { result: expectedSql });
 
-    test('posts to the correct url', async () => {
+    it('posts to the correct url', async () => {
       const store = mockStore(initialState);
       store.dispatch(actions.formatQuery(query, queryId));
       await waitFor(() =>

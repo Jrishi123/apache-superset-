@@ -67,7 +67,7 @@ describe('componentDidMount', () => {
     replaceState.mockReset();
     uriStub.mockReset();
   });
-  test('should handle id', async () => {
+  it('should handle id', async () => {
     const id = 1;
     fetchMock.get(`glob:*/api/v1/sqllab/permalink/kv:${id}`, {
       label: 'test permalink',
@@ -88,7 +88,7 @@ describe('componentDidMount', () => {
     );
     fetchMock.reset();
   });
-  test('should handle permalink', async () => {
+  it('should handle permalink', async () => {
     const key = '9sadkfl';
     fetchMock.get(`glob:*/api/v1/sqllab/permalink/${key}`, {
       label: 'test permalink',
@@ -109,7 +109,7 @@ describe('componentDidMount', () => {
     );
     fetchMock.reset();
   });
-  test('should handle savedQueryId', () => {
+  it('should handle savedQueryId', () => {
     uriStub.mockReturnValue({ savedQueryId: 1 });
     setup(store);
     expect(replaceState).toHaveBeenCalledWith(
@@ -118,7 +118,7 @@ describe('componentDidMount', () => {
       '/sqllab',
     );
   });
-  test('should handle sql', () => {
+  it('should handle sql', () => {
     uriStub.mockReturnValue({ sql: 1, dbid: 1 });
     setup(store);
     expect(replaceState).toHaveBeenCalledWith(
@@ -127,7 +127,7 @@ describe('componentDidMount', () => {
       '/sqllab',
     );
   });
-  test('should handle custom url params', () => {
+  it('should handle custom url params', () => {
     uriStub.mockReturnValue({
       sql: 1,
       dbid: 1,

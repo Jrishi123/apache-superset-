@@ -34,7 +34,7 @@ describe('Option', () => {
     await new Promise(resolve => setTimeout(resolve, 0));
   });
 
-  test('renders with default props', async () => {
+  it('renders with default props', async () => {
     const { container, unmount } = render(
       <Option index={1} clickClose={jest.fn()}>
         Option
@@ -50,7 +50,7 @@ describe('Option', () => {
     unmount();
   });
 
-  test('renders with caret', async () => {
+  it('renders with caret', async () => {
     const { unmount } = render(
       <Option index={1} clickClose={jest.fn()} withCaret>
         Option
@@ -65,7 +65,7 @@ describe('Option', () => {
     unmount();
   });
 
-  test('renders with extra triangle', async () => {
+  it('renders with extra triangle', async () => {
     const { unmount } = render(
       <Option index={1} clickClose={jest.fn()} isExtra>
         Option
@@ -77,7 +77,7 @@ describe('Option', () => {
     unmount();
   });
 
-  test('triggers onClose', async () => {
+  it('triggers onClose', async () => {
     const clickClose = jest.fn();
     const { unmount } = render(
       <Option index={1} clickClose={clickClose}>

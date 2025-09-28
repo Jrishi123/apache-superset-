@@ -134,13 +134,13 @@ describe('ThemeModal', () => {
     fetchMock.restore();
   });
 
-  test('should export ThemeModal component', () => {
+  it('should export ThemeModal component', () => {
     const ThemeModalModule = jest.requireActual('./ThemeModal');
     expect(ThemeModalModule.default).toBeDefined();
     expect(typeof ThemeModalModule.default).toBe('object'); // HOC wrapped component
   });
 
-  test('should have correct type definitions', () => {
+  it('should have correct type definitions', () => {
     expect(mockTheme).toMatchObject({
       id: expect.any(Number),
       theme_name: expect.any(String),
@@ -153,7 +153,7 @@ describe('ThemeModal', () => {
     });
   });
 
-  test('should validate JSON data structure', () => {
+  it('should validate JSON data structure', () => {
     const isValidJson = (str: string) => {
       try {
         JSON.parse(str);
@@ -168,7 +168,7 @@ describe('ThemeModal', () => {
     expect(isValidJson('{"valid": "json"}')).toBe(true);
   });
 
-  test('should handle theme data parsing', () => {
+  it('should handle theme data parsing', () => {
     const parsedTheme = JSON.parse(mockTheme.json_data || '{}');
     expect(parsedTheme).toMatchObject({
       colors: {
@@ -181,7 +181,7 @@ describe('ThemeModal', () => {
     });
   });
 
-  test('should mock theme context functions', () => {
+  it('should mock theme context functions', () => {
     expect(mockThemeContext.setTemporaryTheme).toBeDefined();
     expect(mockThemeContext.clearLocalOverrides).toBeDefined();
     expect(mockThemeContext.hasDevOverride).toBeDefined();
@@ -190,7 +190,7 @@ describe('ThemeModal', () => {
     expect(typeof mockThemeContext.hasDevOverride).toBe('function');
   });
 
-  test('should handle API response structure', () => {
+  it('should handle API response structure', () => {
     // Test that fetch mock is properly configured
     expect(fetchMock.called()).toBe(false);
 
@@ -205,7 +205,7 @@ describe('ThemeModal', () => {
     });
   });
 
-  test('should handle create theme API call', () => {
+  it('should handle create theme API call', () => {
     const newTheme = {
       theme_name: 'New Theme',
       json_data: '{"colors": {"primary": "#ff0000"}}',
@@ -221,7 +221,7 @@ describe('ThemeModal', () => {
     expect(() => JSON.parse(newTheme.json_data)).not.toThrow();
   });
 
-  test('should handle update theme API call', () => {
+  it('should handle update theme API call', () => {
     const updatedTheme = {
       theme_name: 'Updated Theme',
       json_data: '{"colors": {"primary": "#00ff00"}}',
@@ -237,7 +237,7 @@ describe('ThemeModal', () => {
     expect(() => JSON.parse(updatedTheme.json_data)).not.toThrow();
   });
 
-  test('should validate theme name requirements', () => {
+  it('should validate theme name requirements', () => {
     const validateThemeName = (name: string) => !!(name && name.length > 0);
 
     expect(validateThemeName('Valid Theme')).toBe(true);
@@ -245,7 +245,7 @@ describe('ThemeModal', () => {
     expect(validateThemeName('Test')).toBe(true);
   });
 
-  test('should validate JSON configuration requirements', () => {
+  it('should validate JSON configuration requirements', () => {
     const validateJsonData = (jsonData: string) => {
       if (!jsonData || jsonData.length === 0) return false;
       try {
@@ -262,7 +262,7 @@ describe('ThemeModal', () => {
     expect(validateJsonData('{}')).toBe(true);
   });
 
-  test('should handle permission-based feature availability', () => {
+  it('should handle permission-based feature availability', () => {
     const permissionUtils = jest.requireMock(
       'src/dashboard/util/permissionUtils',
     );
@@ -276,7 +276,7 @@ describe('ThemeModal', () => {
     expect(permissionUtils.isUserAdmin()).toBe(false);
   });
 
-  test('should handle theme context override state', () => {
+  it('should handle theme context override state', () => {
     expect(mockThemeContext.hasDevOverride()).toBe(false);
 
     // Test with override

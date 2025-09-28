@@ -70,7 +70,7 @@ describe('ChartPage', () => {
     fetchMock.reset();
   });
 
-  test('fetches metadata on mount', async () => {
+  it('fetches metadata on mount', async () => {
     const exploreApiRoute = 'glob:*/api/v1/explore/*';
     const exploreFormData = getExploreFormData({
       viz_type: VizType.Table,
@@ -93,7 +93,7 @@ describe('ChartPage', () => {
     );
   });
 
-  test('displays the dataset name and error when it is prohibited', async () => {
+  it('displays the dataset name and error when it is prohibited', async () => {
     const chartApiRoute = `glob:*/api/v1/chart/*`;
     const exploreApiRoute = 'glob:*/api/v1/explore/*';
     const expectedDatasourceName = 'failed datasource name';
@@ -135,7 +135,7 @@ describe('ChartPage', () => {
     expect(fetchMock.calls(exploreApiRoute).length).toBeGreaterThanOrEqual(1);
   });
 
-  test('fetches the chart api when explore metadata is prohibited and access from the chart link', async () => {
+  it('fetches the chart api when explore metadata is prohibited and access from the chart link', async () => {
     const expectedChartId = 7;
     const expectedChartName = 'Unauthorized dataset owned chart name';
     (getParsedExploreURLParams as jest.Mock).mockReturnValue(
@@ -195,7 +195,7 @@ describe('ChartPage', () => {
       (getFormDataWithExtraFilters as jest.Mock).mockClear();
     });
 
-    test('overrides the form_data with dashboardContextFormData', async () => {
+    it('overrides the form_data with dashboardContextFormData', async () => {
       const dashboardFormData = getDashboardFormData();
       (getFormDataWithExtraFilters as jest.Mock).mockReturnValue(
         dashboardFormData,
@@ -226,7 +226,7 @@ describe('ChartPage', () => {
       );
     });
 
-    test('overrides the form_data with exploreFormData when location is updated', async () => {
+    it('overrides the form_data with exploreFormData when location is updated', async () => {
       const dashboardFormData = {
         ...getDashboardFormData(),
         viz_type: VizType.Table,

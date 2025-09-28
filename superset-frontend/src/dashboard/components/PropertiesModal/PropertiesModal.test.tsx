@@ -168,7 +168,7 @@ afterAll(() => {
 describe('PropertiesModal', () => {
   jest.setTimeout(15000); // ✅ Applies to all tests in this suite
 
-  test('should render - FeatureFlag disabled', async () => {
+  it('should render - FeatureFlag disabled', async () => {
     mockedIsFeatureEnabled.mockReturnValue(false);
     const props = createProps();
     render(<PropertiesModal {...props} />, {
@@ -210,7 +210,7 @@ describe('PropertiesModal', () => {
     );
   });
 
-  test('should render - FeatureFlag enabled', async () => {
+  it('should render - FeatureFlag enabled', async () => {
     mockedIsFeatureEnabled.mockReturnValue(true);
     const props = createProps();
     render(<PropertiesModal {...props} />, {
@@ -254,7 +254,7 @@ describe('PropertiesModal', () => {
     );
   });
 
-  test('should open advance', async () => {
+  it('should open advance', async () => {
     mockedIsFeatureEnabled.mockReturnValue(true);
     const props = createProps();
     render(<PropertiesModal {...props} />, {
@@ -271,7 +271,7 @@ describe('PropertiesModal', () => {
     expect(screen.getAllByRole('combobox')).toHaveLength(3);
   });
 
-  test('should close modal', async () => {
+  it('should close modal', async () => {
     mockedIsFeatureEnabled.mockReturnValue(true);
     const props = createProps();
     render(<PropertiesModal {...props} />, {
@@ -288,7 +288,7 @@ describe('PropertiesModal', () => {
     expect(props.onHide).toHaveBeenCalledTimes(2);
   });
 
-  test('submitting with onlyApply:false', async () => {
+  it('submitting with onlyApply:false', async () => {
     const put = jest.spyOn(SupersetCore.SupersetClient, 'put');
     put.mockResolvedValue({
       json: {
@@ -331,7 +331,7 @@ describe('PropertiesModal', () => {
     });
   });
 
-  test('submitting with onlyApply:true', async () => {
+  it('submitting with onlyApply:true', async () => {
     mockedIsFeatureEnabled.mockReturnValue(false);
     const props = createProps();
     props.onlyApply = true;
@@ -351,7 +351,7 @@ describe('PropertiesModal', () => {
     });
   });
 
-  test('Empty "Certified by" should clear "Certification details"', async () => {
+  it('Empty "Certified by" should clear "Certification details"', async () => {
     const props = createProps();
     const noCertifiedByProps = {
       ...props,
@@ -366,7 +366,7 @@ describe('PropertiesModal', () => {
     ).toHaveValue('');
   });
 
-  test('should show all roles', async () => {
+  it('should show all roles', async () => {
     mockedIsFeatureEnabled.mockReturnValue(true);
 
     const props = createProps();
@@ -399,7 +399,7 @@ describe('PropertiesModal', () => {
     expect(options[0]).toHaveTextContent('Admin');
   });
 
-  test('should show active owners with dashboard rbac', async () => {
+  it('should show active owners with dashboard rbac', async () => {
     mockedIsFeatureEnabled.mockReturnValue(true);
 
     const props = createProps();
@@ -432,7 +432,7 @@ describe('PropertiesModal', () => {
     expect(options[0]).toHaveTextContent('Superset Admin');
   });
 
-  test('should show active owners without dashboard rbac', async () => {
+  it('should show active owners without dashboard rbac', async () => {
     mockedIsFeatureEnabled.mockReturnValue(false);
 
     const props = createProps();

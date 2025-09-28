@@ -40,7 +40,7 @@ describe('DataTablesPane', () => {
     localStorage.clear();
   });
 
-  test('Rendering DataTablesPane correctly', async () => {
+  it('Rendering DataTablesPane correctly', async () => {
     const props = createDataTablesPaneProps(0);
     render(<DataTablesPane {...props} />, { useRedux: true });
     expect(await screen.findByText('Results')).toBeVisible();
@@ -48,7 +48,7 @@ describe('DataTablesPane', () => {
     expect(screen.getByLabelText('Expand data panel')).toBeVisible();
   });
 
-  test('Collapse/Expand buttons', async () => {
+  it('Collapse/Expand buttons', async () => {
     const props = createDataTablesPaneProps(0);
     render(<DataTablesPane {...props} />, {
       useRedux: true,
@@ -63,7 +63,7 @@ describe('DataTablesPane', () => {
     ).not.toBeInTheDocument();
   });
 
-  test('Should show tabs: View results', async () => {
+  it('Should show tabs: View results', async () => {
     const props = createDataTablesPaneProps(0);
     render(<DataTablesPane {...props} />, {
       useRedux: true,
@@ -74,7 +74,7 @@ describe('DataTablesPane', () => {
     localStorage.clear();
   });
 
-  test('Should show tabs: View samples', async () => {
+  it('Should show tabs: View samples', async () => {
     const props = createDataTablesPaneProps(0);
     render(<DataTablesPane {...props} />, {
       useRedux: true,
@@ -84,7 +84,7 @@ describe('DataTablesPane', () => {
     expect(await screen.findByLabelText('Collapse data panel')).toBeVisible();
   });
 
-  test('Should copy data table content correctly', async () => {
+  it('Should copy data table content correctly', async () => {
     fetchMock.post(
       'glob:*/api/v1/chart/data?form_data=%7B%22slice_id%22%3A456%7D',
       {
@@ -115,7 +115,7 @@ describe('DataTablesPane', () => {
     fetchMock.restore();
   });
 
-  test('Should not allow copy data table content when canDownload=false', async () => {
+  it('Should not allow copy data table content when canDownload=false', async () => {
     fetchMock.post(
       'glob:*/api/v1/chart/data?form_data=%7B%22slice_id%22%3A456%7D',
       {
@@ -143,7 +143,7 @@ describe('DataTablesPane', () => {
     fetchMock.restore();
   });
 
-  test('Search table', async () => {
+  it('Search table', async () => {
     fetchMock.post(
       'glob:*/api/v1/chart/data?form_data=%7B%22slice_id%22%3A789%7D',
       {
@@ -179,7 +179,7 @@ describe('DataTablesPane', () => {
     fetchMock.restore();
   });
 
-  test('Displaying the data pane is under featureflag', () => {
+  it('Displaying the data pane is under featureflag', () => {
     // @ts-ignore
     global.featureFlags = {
       [FeatureFlag.DatapanelClosedByDefault]: true,

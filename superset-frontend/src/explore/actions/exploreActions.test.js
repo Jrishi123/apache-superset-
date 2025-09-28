@@ -217,7 +217,7 @@ describe('reducers', () => {
     );
   });
 
-  test('setStashFormData works as expected with fieldNames', () => {
+  it('setStashFormData works as expected with fieldNames', () => {
     const newState = exploreReducer(
       defaultState,
       actions.setStashFormData(true, ['y_axis_format']),

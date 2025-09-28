@@ -272,7 +272,7 @@ describe('should collect control values and create SFD', () => {
     });
   });
 
-  test('should avoid to overlap', () => {
+  it('should avoid to overlap', () => {
     const sharedControlsSet = new Set(Object.keys(sharedKey));
     const publicControlsSet = new Set(publicControls);
     expect(
@@ -280,7 +280,7 @@ describe('should collect control values and create SFD', () => {
     ).toEqual([]);
   });
 
-  test('should collect all sharedControls', () => {
+  it('should collect all sharedControls', () => {
     expect(Object.entries(sharedControlsFormData).length).toBe(
       Object.entries(sharedKey).length,
     );
@@ -305,7 +305,7 @@ describe('should collect control values and create SFD', () => {
     ]);
   });
 
-  test('should transform all publicControls and sharedControls', () => {
+  it('should transform all publicControls and sharedControls', () => {
     expect(Object.entries(publicControlsFormData).length).toBe(
       publicControls.length,
     );
@@ -338,7 +338,7 @@ describe('should collect control values and create SFD', () => {
     ]);
   });
 
-  test('should inherit standardizedFormData and memorizedFormData is LIFO', () => {
+  it('should inherit standardizedFormData and memorizedFormData is LIFO', () => {
     // from source_viz to target_viz
     const sfd = new StandardizedFormData(sourceMockFormData);
     const { formData, controlsState } = sfd.transform(
@@ -391,7 +391,7 @@ describe('should transform form_data between table and bigNumberTotal', () => {
     );
   });
 
-  test('get and has', () => {
+  it('get and has', () => {
     // table -> bigNumberTotal
     const sfd = new StandardizedFormData(tableVizFormData);
     const { formData: bntFormData } = sfd.transform(
@@ -409,7 +409,7 @@ describe('should transform form_data between table and bigNumberTotal', () => {
     expect(sfd2.get('table').viz_type).toBe(VizType.Table);
   });
 
-  test('transform', () => {
+  it('transform', () => {
     // table -> bigNumberTotal
     const sfd = new StandardizedFormData(tableVizFormData);
     const { formData: bntFormData, controlsState: bntControlsState } =
@@ -459,7 +459,7 @@ describe('initial SFD between different datasource', () => {
     );
   });
 
-  test('initial SFD between different datasource', () => {
+  it('initial SFD between different datasource', () => {
     const sfd = new StandardizedFormData(tableVizFormData);
     // table -> big number
     const { formData: bntFormData, controlsState: bntControlsState } =

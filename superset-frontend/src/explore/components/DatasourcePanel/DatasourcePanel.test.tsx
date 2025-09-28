@@ -207,7 +207,7 @@ describe('DatasourcePanel', () => {
     await new Promise(resolve => setTimeout(resolve, 0));
   });
 
-  test('should search and render matching columns', async () => {
+  it('should search and render matching columns', async () => {
     const { unmount } = render(
       <ExploreContainer>
         <DatasourcePanel {...props} />

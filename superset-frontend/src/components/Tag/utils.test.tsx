@@ -21,7 +21,7 @@ import rison from 'rison';
 import { tagToSelectOption, loadTags } from 'src/components/Tag/utils';
 
 describe('tagToSelectOption', () => {
-  test('converts a Tag object with table_name to a SelectTagsValue', () => {
+  it('converts a Tag object with table_name to a SelectTagsValue', () => {
     const tag = {
       id: 1,
       name: 'TagName',
@@ -47,7 +47,7 @@ describe('loadTags', () => {
     fetchMock.restore();
   });
 
-  test('constructs correct API query with custom tag filter', async () => {
+  it('constructs correct API query with custom tag filter', async () => {
     const mockTags = [
       { id: 1, name: 'analytics', type: 1 },
       { id: 2, name: 'finance', type: 1 },
@@ -86,7 +86,7 @@ describe('loadTags', () => {
     });
   });
 
-  test('returns correctly transformed data', async () => {
+  it('returns correctly transformed data', async () => {
     const mockTags = [
       { id: 1, name: 'analytics', type: 1 },
       { id: 2, name: 'finance', type: 1 },
@@ -108,7 +108,7 @@ describe('loadTags', () => {
     });
   });
 
-  test('handles search parameter correctly', async () => {
+  it('handles search parameter correctly', async () => {
     fetchMock.get('glob:*/api/v1/tag/*', {
       result: [],
       count: 0,
@@ -131,7 +131,7 @@ describe('loadTags', () => {
     });
   });
 
-  test('handles pagination parameters correctly', async () => {
+  it('handles pagination parameters correctly', async () => {
     fetchMock.get('glob:*/api/v1/tag/*', {
       result: [],
       count: 0,
@@ -150,7 +150,7 @@ describe('loadTags', () => {
     expect(decodedQuery.page_size).toBe(10);
   });
 
-  test('always includes custom tag filter regardless of other parameters', async () => {
+  it('always includes custom tag filter regardless of other parameters', async () => {
     fetchMock.get('glob:*/api/v1/tag/*', {
       result: [],
       count: 0,
@@ -180,7 +180,7 @@ describe('loadTags', () => {
     });
   });
 
-  test('maintains correct order specification', async () => {
+  it('maintains correct order specification', async () => {
     fetchMock.get('glob:*/api/v1/tag/*', {
       result: [],
       count: 0,

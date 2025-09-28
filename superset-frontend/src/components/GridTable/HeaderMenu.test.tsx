@@ -153,7 +153,7 @@ test('renders unhide when invisible column exists', async () => {
 });
 
 describe('for main menu', () => {
-  test('renders Copy to Clipboard', async () => {
+  it('renders Copy to Clipboard', async () => {
     const { getByText } = setup({ ...mockedProps, isMain: true });
     userEvent.click(getByText('Copy the current data'));
     await waitFor(() =>
@@ -166,7 +166,7 @@ describe('for main menu', () => {
     });
   });
 
-  test('renders Download to CSV', async () => {
+  it('renders Download to CSV', async () => {
     const { getByText } = setup({ ...mockedProps, isMain: true });
     userEvent.click(getByText('Download to CSV'));
     await waitFor(() =>
@@ -177,7 +177,7 @@ describe('for main menu', () => {
     });
   });
 
-  test('renders autosize column', async () => {
+  it('renders autosize column', async () => {
     const { getByText } = setup({ ...mockedProps, isMain: true });
     userEvent.click(getByText('Autosize all columns'));
     await waitFor(() =>
@@ -185,7 +185,7 @@ describe('for main menu', () => {
     );
   });
 
-  test('renders all unhide all hidden columns when multiple invisible columns exist', async () => {
+  it('renders all unhide all hidden columns when multiple invisible columns exist', async () => {
     setup({
       ...mockedProps,
       isMain: true,
@@ -201,7 +201,7 @@ describe('for main menu', () => {
     );
   });
 
-  test('reset columns configuration', async () => {
+  it('reset columns configuration', async () => {
     const { getByText } = setup({
       ...mockedProps,
       isMain: true,

@@ -73,18 +73,18 @@ describe('DownloadScreenshot component', () => {
     jest.restoreAllMocks();
   });
 
-  test('renders correctly with the given text', () => {
+  it('renders correctly with the given text', () => {
     renderComponent();
     expect(screen.getByText('Download')).toBeInTheDocument();
   });
 
-  test('button renders with role="button"', async () => {
+  it('button renders with role="button"', async () => {
     renderComponent();
     const button = screen.getByRole('button', { name: 'Download' });
     expect(button).toBeInTheDocument();
   });
 
-  test('displays error message when API call fails', async () => {
+  it('displays error message when API call fails', async () => {
     const props = defaultProps();
 
     fetchMock.post(
@@ -106,7 +106,7 @@ describe('DownloadScreenshot component', () => {
     });
   });
 
-  test('displays success message when API call succeeds', async () => {
+  it('displays success message when API call succeeds', async () => {
     const props = defaultProps();
     fetchMock.post(
       `glob:*/api/v1/dashboard/${props.dashboardId}/cache_dashboard_screenshot/`,
@@ -141,7 +141,7 @@ describe('DownloadScreenshot component', () => {
     });
   });
 
-  test('throws error when no image cache key is provided', async () => {
+  it('throws error when no image cache key is provided', async () => {
     const props = defaultProps();
     fetchMock.post(
       `glob:*/api/v1/dashboard/${props.dashboardId}/cache_dashboard_screenshot/`,
@@ -165,7 +165,7 @@ describe('DownloadScreenshot component', () => {
     });
   });
 
-  test('displays success message when image retrieval succeeds', async () => {
+  it('displays success message when image retrieval succeeds', async () => {
     const props = defaultProps();
     fetchMock.post(
       `glob:*/api/v1/dashboard/${props.dashboardId}/cache_dashboard_screenshot/`,

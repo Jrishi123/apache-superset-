@@ -116,7 +116,7 @@ const chartPropsConfig = {
   theme: supersetTheme,
 };
 
-it('should transform chart props for viz with showQueryIdentifiers=false', () => {
+test('should transform chart props for viz with showQueryIdentifiers=false', () => {
   const chartPropsConfigWithoutIdentifiers = {
     ...chartPropsConfig,
     formData: {
@@ -139,7 +139,7 @@ it('should transform chart props for viz with showQueryIdentifiers=false', () =>
   expect(seriesIds).not.toContain('sum__num (Query B), boy');
 });
 
-it('should transform chart props for viz with showQueryIdentifiers=true', () => {
+test('should transform chart props for viz with showQueryIdentifiers=true', () => {
   const chartPropsConfigWithIdentifiers = {
     ...chartPropsConfig,
     formData: {

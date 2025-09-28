@@ -152,7 +152,7 @@ describe('ExploreChartHeader', () => {
     });
   });
 
-  test('Cancelling changes to the properties should reset previous properties', async () => {
+  it('Cancelling changes to the properties should reset previous properties', async () => {
     const props = createProps();
     render(<ExploreHeader {...props} />, { useRedux: true });
     const newChartName = 'New chart name';
@@ -179,7 +179,7 @@ describe('ExploreChartHeader', () => {
     expect(await screen.findByDisplayValue(prevChartName)).toBeInTheDocument();
   });
 
-  test('renders the metadata bar when saved', async () => {
+  it('renders the metadata bar when saved', async () => {
     const props = createProps({ showTitlePanelItems: true });
     render(<ExploreHeader {...props} />, { useRedux: true });
     expect(await screen.findByText('Added to 1 dashboard')).toBeInTheDocument();
@@ -188,7 +188,7 @@ describe('ExploreChartHeader', () => {
     expect(await screen.findByText('2 days ago')).toBeInTheDocument();
   });
 
-  test('Changes "Added to X dashboards" to plural when more than 1 dashboard', async () => {
+  it('Changes "Added to X dashboards" to plural when more than 1 dashboard', async () => {
     const props = createProps({ showTitlePanelItems: true });
     render(
       <ExploreHeader
@@ -208,7 +208,7 @@ describe('ExploreChartHeader', () => {
     ).toBeInTheDocument();
   });
 
-  test('does not render the metadata bar when not saved', async () => {
+  it('does not render the metadata bar when not saved', async () => {
     const props = createProps({ showTitlePanelItems: true, slice: null });
     render(<ExploreHeader {...props} />, { useRedux: true });
     await waitFor(() =>
@@ -218,7 +218,7 @@ describe('ExploreChartHeader', () => {
     );
   });
 
-  test('Save chart', async () => {
+  it('Save chart', async () => {
     const setSaveChartModalVisibilitySpy = jest.spyOn(
       saveModalActions,
       'setSaveChartModalVisibility',
@@ -254,7 +254,7 @@ describe('ExploreChartHeader', () => {
     setSaveChartModalVisibilityMock.mockClear();
   });
 
-  test('Save disabled', async () => {
+  it('Save disabled', async () => {
     const triggerManualSave = jest.fn();
 
     (useUnsavedChangesPrompt as jest.Mock).mockReturnValue({
@@ -279,7 +279,7 @@ describe('ExploreChartHeader', () => {
     expect(triggerManualSave).not.toHaveBeenCalled();
   });
 
-  test('should render UnsavedChangesModal when showModal is true', async () => {
+  it('should render UnsavedChangesModal when showModal is true', async () => {
     const props = createProps();
 
     (useUnsavedChangesPrompt as jest.Mock).mockReturnValue({
@@ -301,7 +301,7 @@ describe('ExploreChartHeader', () => {
     ).toBeInTheDocument();
   });
 
-  test('should call handleSaveAndCloseModal when clicking Save in UnsavedChangesModal', async () => {
+  it('should call handleSaveAndCloseModal when clicking Save in UnsavedChangesModal', async () => {
     const handleSaveAndCloseModal = jest.fn();
 
     (useUnsavedChangesPrompt as jest.Mock).mockReturnValue({
@@ -325,7 +325,7 @@ describe('ExploreChartHeader', () => {
     expect(handleSaveAndCloseModal).toHaveBeenCalled();
   });
 
-  test('should call handleConfirmNavigation when clicking Discard in UnsavedChangesModal', async () => {
+  it('should call handleConfirmNavigation when clicking Discard in UnsavedChangesModal', async () => {
     const handleConfirmNavigation = jest.fn();
 
     (useUnsavedChangesPrompt as jest.Mock).mockReturnValue({
@@ -349,7 +349,7 @@ describe('ExploreChartHeader', () => {
     expect(handleConfirmNavigation).toHaveBeenCalled();
   });
 
-  test('should call setShowModal(false) when clicking close button in UnsavedChangesModal', async () => {
+  it('should call setShowModal(false) when clicking close button in UnsavedChangesModal', async () => {
     const setShowModal = jest.fn();
 
     (useUnsavedChangesPrompt as jest.Mock).mockReturnValue({
@@ -386,7 +386,7 @@ describe('Additional actions tests', () => {
     });
   });
 
-  test('Should render a button', async () => {
+  it('Should render a button', async () => {
     const props = createProps();
     render(<ExploreHeader {...props} />, { useRedux: true });
     expect(
@@ -394,7 +394,7 @@ describe('Additional actions tests', () => {
     ).toBeInTheDocument();
   });
 
-  test('Should open a menu', async () => {
+  it('Should open a menu', async () => {
     const props = createProps();
     render(<ExploreHeader {...props} />, {
       useRedux: true,
@@ -416,7 +416,7 @@ describe('Additional actions tests', () => {
     expect(screen.queryByText('Manage email report')).not.toBeInTheDocument();
   });
 
-  test('Should open download submenu', async () => {
+  it('Should open download submenu', async () => {
     const props = createProps();
     render(<ExploreHeader {...props} />, {
       useRedux: true,
@@ -435,7 +435,7 @@ describe('Additional actions tests', () => {
     expect(await screen.findByText('Download as image')).toBeInTheDocument();
   });
 
-  test('Should open share submenu', async () => {
+  it('Should open share submenu', async () => {
     const props = createProps();
     render(<ExploreHeader {...props} />, {
       useRedux: true,
@@ -458,7 +458,7 @@ describe('Additional actions tests', () => {
     expect(await screen.findByText('Share chart by email')).toBeInTheDocument();
   });
 
-  test('Should call onOpenPropertiesModal when click on "Edit chart properties"', async () => {
+  it('Should call onOpenPropertiesModal when click on "Edit chart properties"', async () => {
     const props = createProps();
     render(<ExploreHeader {...props} />, {
       useRedux: true,
@@ -473,7 +473,7 @@ describe('Additional actions tests', () => {
     ).toBeInTheDocument();
   });
 
-  test('Should call getChartDataRequest when click on "View query"', async () => {
+  it('Should call getChartDataRequest when click on "View query"', async () => {
     const props = createProps();
     const getChartDataRequest = jest.spyOn(chartAction, 'getChartDataRequest');
     render(<ExploreHeader {...props} />, {
@@ -490,7 +490,7 @@ describe('Additional actions tests', () => {
     await waitFor(() => expect(getChartDataRequest).toHaveBeenCalledTimes(1));
   });
 
-  test('Should call onOpenInEditor when click on "Run in SQL Lab"', async () => {
+  it('Should call onOpenInEditor when click on "Run in SQL Lab"', async () => {
     const props = createProps();
     render(<ExploreHeader {...props} />, {
       useRedux: true,
@@ -529,7 +529,7 @@ describe('Additional actions tests', () => {
       await new Promise(resolve => setTimeout(resolve, 0));
     });
 
-    test('Should call downloadAsImage when click on "Download as image"', async () => {
+    it('Should call downloadAsImage when click on "Download as image"', async () => {
       const props = createProps();
       const spy = jest.spyOn(downloadAsImage, 'default');
       render(<ExploreHeader {...props} />, {
@@ -554,7 +554,7 @@ describe('Additional actions tests', () => {
       });
     });
 
-    test('Should not export to CSV if canDownload=false', async () => {
+    it('Should not export to CSV if canDownload=false', async () => {
       const props = createProps();
       render(<ExploreHeader {...props} />, {
         useRedux: true,
@@ -567,7 +567,7 @@ describe('Additional actions tests', () => {
       spyExportChart.restore();
     });
 
-    test('Should export to CSV if canDownload=true', async () => {
+    it('Should export to CSV if canDownload=true', async () => {
       const props = createProps();
       props.canDownload = true;
       render(<ExploreHeader {...props} />, {
@@ -582,7 +582,7 @@ describe('Additional actions tests', () => {
       spyExportChart.restore();
     });
 
-    test('Should not export to JSON if canDownload=false', async () => {
+    it('Should not export to JSON if canDownload=false', async () => {
       const props = createProps();
       render(<ExploreHeader {...props} />, {
         useRedux: true,
@@ -595,7 +595,7 @@ describe('Additional actions tests', () => {
       spyExportChart.restore();
     });
 
-    test('Should export to JSON if canDownload=true', async () => {
+    it('Should export to JSON if canDownload=true', async () => {
       const props = createProps();
       props.canDownload = true;
       render(<ExploreHeader {...props} />, {
@@ -609,7 +609,7 @@ describe('Additional actions tests', () => {
       expect(spyExportChart.callCount).toBe(1);
     });
 
-    test('Should not export to pivoted CSV if canDownloadCSV=false and viz_type=pivot_table_v2', async () => {
+    it('Should not export to pivoted CSV if canDownloadCSV=false and viz_type=pivot_table_v2', async () => {
       const props = createProps();
       props.chart.latestQueryFormData.viz_type = VizType.PivotTable;
       render(<ExploreHeader {...props} />, {
@@ -625,7 +625,7 @@ describe('Additional actions tests', () => {
       expect(spyExportChart.callCount).toBe(0);
     });
 
-    test('Should export to pivoted CSV if canDownloadCSV=true and viz_type=pivot_table_v2', async () => {
+    it('Should export to pivoted CSV if canDownloadCSV=true and viz_type=pivot_table_v2', async () => {
       const props = createProps();
       props.canDownload = true;
       props.chart.latestQueryFormData.viz_type = VizType.PivotTable;
@@ -642,7 +642,7 @@ describe('Additional actions tests', () => {
       expect(spyExportChart.callCount).toBe(1);
     });
 
-    test('Should not export to Excel if canDownload=false', async () => {
+    it('Should not export to Excel if canDownload=false', async () => {
       const props = createProps();
       render(<ExploreHeader {...props} />, {
         useRedux: true,
@@ -655,7 +655,7 @@ describe('Additional actions tests', () => {
       spyExportChart.restore();
     });
 
-    test('Should export to Excel if canDownload=true', async () => {
+    it('Should export to Excel if canDownload=true', async () => {
       const props = createProps();
       props.canDownload = true;
       render(<ExploreHeader {...props} />, {
